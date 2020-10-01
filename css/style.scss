@@ -1,0 +1,232 @@
+// IMPORT
+
+@import "slick.scss";
+@import "slick-theme.scss";
+
+
+// FONTS
+
+
+@font-face {
+	font-family: 'social_logosregular';
+	src: url('../fonts/social_logos-webfont.woff2') format('woff2'),
+         url('../fonts/social_logos-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+// MIXIN - start
+
+$accent: #00a388;
+$light: #f1f2f1;
+$dark: #140e1d;
+
+@for $i from 1 through 12 {
+  .col-#{$i} { width: 8.3333% * $i; }
+}
+
+// контейнер по умолчанию. Отступ между колонками
+$container: 1200px;
+$colGups: 15px;
+
+// размер текста
+$textFont-size: 1rem;  // 16px
+$linkColor: blue;
+
+// контрольные точки, на которых наш макет будет перестраиваться (могут меняться зависимости от дизайна)
+$breakpoints: (
+        xs: 0,
+        sm: 575px,
+        md: 768px,
+        lg: 1025px,
+        xl: 1200px,
+        xxl: 1440px
+);
+
+// количество колонок
+$columns: 12;
+
+// проходимся циклом по всем контрольным точкам
+@each $breakpoint in $breakpoints {
+
+  // в name записываем имя размера (xs, sm, md ...)
+  // в size записываем кол-во колонок, которые должен занимать элемент с эти классом.
+  $name: nth($breakpoint, 1);
+  $size: nth($breakpoint, 2);
+  
+  // генерируем медиа запрос для ширины брейкпоинта, который сейчас является текущим в цикле.
+  @media only screen and (min-width: $size) {
+    [class*="col-#{$name}"] {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: $colGups;
+      padding-left: $colGups;
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-#{$i} {
+        flex-basis: 100% / $columns * $i;
+        max-width: 100% / $columns * $i;
+      }
+    }
+    @for $i from 1 through $columns {
+      .col-#{$name}-offset-#{$i} {
+        margin-left: 100% / $columns * $i
+      }
+    }
+  }
+}
+
+@mixin btn ( $bg-color ) {
+	background: $bg-color;
+	color: #ffffff;
+	outline-style: none;
+	width: 200px;
+	height: 55px;
+	box-shadow: 0 4px 4px 4px rgba(0, 0, 0, 0.1);
+	font-family: Raleway, Arial, serif;
+	font-size: 20px;
+	font-weight: 300;
+	text-transform: uppercase;
+	line-height: 55px;
+	border: none;
+	padding: 0;
+	margin-bottom: 120px;
+	transition: background 0.5s ease;
+	&:hover {
+		background: lighten( $bg-color, 15% );
+	}
+}
+// @include btn( #6ee16c );
+ 
+@mixin title() {
+	font-family: Raleway, Arial, serif;
+	font-weight: 700;
+}
+
+// &__title {
+// 	@include title();
+// }
+
+@mixin text() {
+	font-family: Raleway, Arial, serif;
+	font-weight: 300;
+	line-height: 27px;
+}
+
+// &__text {
+// 	@include text();
+// }
+
+// MIXIN - end
+
+
+// BASE STYLE - start
+
+body{
+	font-family: 'Lato', sans-serif;
+	font-size: 1rem;
+}
+*{
+	box-sizing: border-box;
+}
+ul, li{
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+
+.container{
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
+.visually-hidden{
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+}
+.icon{
+	width: 15px;
+	height: 15px;
+	fill: $accent;
+}
+// BASE STYLE - end
+
+
+
+// HEADER - start
+
+// HEADER - end
+
+
+
+// NAV - start
+
+// NAV - end
+
+
+
+// HERO - start
+
+// HERO - end
+
+
+
+// ABOUT - start
+
+// ABOUT - end
+
+
+
+// PORTFOLIO - start
+
+// PORTFOLIO - end
+
+
+
+// GALLERY - start
+
+// GALLERY - end
+
+
+
+// SERVICES - start
+
+// SERVICES - end
+
+
+
+// BLOG - start
+
+// BLOG - end
+
+
+
+// MAP - start
+#map{
+	height: 400px;
+	width: 100%;
+}
+// MAP - end
+
+
+
+// CONTACT - start
+
+// CONTACT - end
+
+
+
+// FOOTER - start
+
+// FOOTER - end
